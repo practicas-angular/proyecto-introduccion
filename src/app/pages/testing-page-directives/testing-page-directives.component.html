@@ -1,0 +1,83 @@
+<!--****** custom directives ******-->
+<div clickCounter></div>
+<div hoverIncrease>hoverIncrease directive</div>
+<input placeholder="no directive" />
+<input autoFocus placeholder="autoLoad directive" />
+<div onlyRole requiredRole='admin'>onlyRole</div>
+
+<!--****** structural directives ******-->
+@if (isAdmin){
+<div>if isAdmin</div>
+}
+@for (producto of productos; track producto){
+<div>
+    <span>Producto: {{producto.nombre}}</span>
+    <span>Precio: {{producto.precio}}</span>
+</div>
+}
+@switch (day) {
+@case (1) {
+<p>Hoy es lunes</p>
+}
+@default {
+<p>Hoy NO es lunes</p>
+}
+}
+<!-- ng-container -->
+<ng-template #basic_template>
+    <p>This is a basic template</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="basic_template">
+    Useless text *basic_template
+</ng-container>
+<ng-container [ngTemplateOutlet]="basic_template">
+    <!-- Useless text [basic_template] -->
+</ng-container>
+
+<ng-template #basic_number_template>
+    <p>1</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="basic_number_template">
+    2
+</ng-container>
+<ng-container [ngTemplateOutlet]="basic_number_template">
+    3
+</ng-container>
+
+<ng-template #implicit_context_template let-name>
+    <p>This is an implicit context template for {{name}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="implicit_context_template, context: {$implicit: userName}">
+    Useless text
+</ng-container>
+
+<ng-template #explicit_context_template let-name="name">
+    <p>This is an explicit context template for {{name}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="explicit_context_template, context: {name: userName}">
+    Useless text
+</ng-container>
+
+
+<ng-template #mix_context_template let-name="name" let-age let-country="country">
+    <p>{{ name }} is {{ age }} years old from {{ country }}.</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="mix_context_template; context: { 
+    name: 'Jose',
+    $implicit: 30,
+    country: 'Spain'
+  }">
+</ng-container>
+
+<ng-container *ngComponentOutlet="selected_component"></ng-container>
+
+
+
+<!--****** attribute directives ******-->
+<p [ngClass]="{'exampleClass' : isAdmin}"></p>
+<button (click)="isAdmin = !isAdmin">Toggle isAdmin</button>
+
+
+<p [ngStyle]="{ 'color': isAdmin ? 'red' : 'blue' }">
+    Red for admin, blue for non admin
+</p>
