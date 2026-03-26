@@ -1,0 +1,5 @@
+<div class="card">
+    <img #userImg [src]="avatarDirectory+user.avatar" [alt]="user.name"
+        (error)="userImg.src = avatarDirectory+defaultImg">
+    <div class="card-name">{{user.name}}</div>
+</div>

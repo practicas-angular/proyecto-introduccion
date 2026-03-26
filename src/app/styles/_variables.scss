@@ -1,0 +1,27 @@
+:root {
+  /* Brand Colors */
+  --plexus-primary: #00AEEF;       /* The signature Electric Blue */
+  --plexus-primary-hover: #0087b8; 
+  --plexus-dark: #1a1a1b;          /* Main dark background/text */
+  --plexus-black: #000000;         /* Pure black for deep sections */
+  
+  /* Neutral Palette */
+  --plexus-white: #ffffff;
+  --plexus-gray-light: #f4f4f4;    /* Background for light sections */
+  --plexus-gray-medium: #888888;   /* Subtle text / borders */
+  --plexus-gray-dark: #333333;     /* Secondary text */
+
+  /* Typography */
+  --plexus-font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --plexus-font-weight-bold: 700;
+  --plexus-font-weight-light: 300;
+
+  /* Spacing & Layout */
+  --plexus-section-padding: 80px 0;
+  --plexus-border-radius: 4px;     /* They use relatively sharp/slight curves */
+  --plexus-container-width: 1200px;
+  
+  /* UI Elements */
+  --plexus-transition: all 0.3s ease-in-out;
+  --plexus-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}

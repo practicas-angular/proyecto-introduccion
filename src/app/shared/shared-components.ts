@@ -1,11 +1,17 @@
+import { CardComponent } from "../components/card/card.component";
+import { ContactFormComponent } from "../components/contact-form/contact-form.component";
+import { FooterComponent } from "../components/footer/footer.component";
+import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RoundButtonComponent } from "../components/round-button/round-button.component";
-import { AutoFocusDirective } from "../directives/auto-focus.directive";
-import { ClickCounterDirective } from "../directives/click-counter.directive";
-import { HoverIncreaseDirective } from "../directives/hover-increase.directive";
-import { OnlyRoleDirective } from "../directives/only-role.directive";
+import { UserTableComponent } from "../components/user-table/user-table.component";
 
 
 
 export const SHARED_COMPONENTS = [
-  RoundButtonComponent
+  RoundButtonComponent,
+  CardComponent,
+  NavbarComponent,
+  FooterComponent,
+  ContactFormComponent,
+  UserTableComponent
 ];

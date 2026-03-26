@@ -1,0 +1,83 @@
+/* Container styling */
+.contact-form {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Field grouping */
+.field {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Inputs and Textarea */
+input, textarea {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: #3b82f6; /* Modern Blue */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Error state for inputs */
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border-color: #ef4444; /* Soft Red */
+}
+
+/* Error message text */
+.error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+button[type="submit"]:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Textarea specific */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}

@@ -1,0 +1,30 @@
+@if (users$ | async; as users) {
+<table class="user-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody id="user-table-body">
+        @for (user of users; track user.id) {
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+        </tr>
+        } @empty {
+        <tr>
+            <td colspan="4">No se han encontrado usuarios.</td>
+        </tr>
+        }
+    </tbody>
+</table>
+} @else {
+<div class="loading-spinner">
+    <p>Cargando usuarios...</p>
+</div>
+}
