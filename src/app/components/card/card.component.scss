@@ -4,7 +4,7 @@
     width: 200px;
     height: 250px;
     box-shadow: var(--plexus-shadow);
-    background-color: var(--plexus-primary);
+    background-color: var(--plexus-blue);
     padding: 10px;
 }
 
@@ -17,4 +17,5 @@
 .card-name {
     text-align: center;
     font-weight: bold;
+    color: var(--plexus-white);
 }

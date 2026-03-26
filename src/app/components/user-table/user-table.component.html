@@ -10,7 +10,7 @@
     </thead>
     <tbody id="user-table-body">
         @for (user of users; track user.id) {
-        <tr>
+        <tr (click)="openUserDetail(user.id)" style="cursor: pointer;">
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
@@ -26,5 +26,20 @@
 } @else {
 <div class="loading-spinner">
     <p>Cargando usuarios...</p>
+</div>
+}
+
+@if (showModal) {
+<div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+        @if (selectedUser$ | async; as selectedUser) {
+        <app-user-card [user]="selectedUser"></app-user-card>
+        <button (click)="closeModal()">Close</button>
+        } @else {
+        <p>Loading details...</p>
+        }
+
+    </div>
 </div>
 }

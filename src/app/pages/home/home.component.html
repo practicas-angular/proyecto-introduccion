@@ -2,8 +2,8 @@
 <main>
     <Title>Bienvenido a la página de {{name}}</Title>
     <div class="card-container">
-        @for (item of USERS; track item) {
-        <app-card [user]="item"></app-card>
+        @for (user of USERS; track user) {
+        <app-card [user]="user"></app-card>
         }
     </div>
 </main>

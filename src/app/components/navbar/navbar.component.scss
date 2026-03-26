@@ -12,3 +12,12 @@ nav {
     height: 50px;
     background-color: var(--plexus-gray-light);
 }
+
+nav a {
+    text-decoration: none;
+    color: var(--plexus-blue);
+}
+
+nav a:hover {
+    text-decoration: underline;
+}

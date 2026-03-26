@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../../models/user.model';
+import { UserCard } from '../../interfaces/user_card_simple.interface';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,7 @@ import { User } from '../../models/user.model';
 })
 export class CardComponent {
   @Input()
-  user!: Partial<User>;
+  user!: UserCard;
 
   /* name: string = this.user.name;
   avatar: string = this.user.avatar; */
