@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { catchError, of, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, of, Subject, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { SHARED_COMPONENTS } from '../../shared/shared-components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-table',
@@ -12,6 +13,7 @@ import { SHARED_COMPONENTS } from '../../shared/shared-components';
 })
 export class UserTableComponent {
   private userService = inject(UserService);
+  private router = inject(Router);
 
   /* added .pipe(catchError) just in case error happens,
   to ruturn an empty array */
@@ -22,15 +24,14 @@ export class UserTableComponent {
     })
   );
 
-  /* fetch User by id */
-  private selectedUserSource = new Subject<number | null>();
+  private selectedUserSource = new BehaviorSubject<number | null>(null);
   selectedUser$ = this.selectedUserSource.pipe(
     switchMap(id => {
-      if (!id) return of(null); // If no ID, return nothing
+      if (!id) return of(null);
       return this.userService.getUserById(id).pipe(
         catchError(err => {
           console.error('Error fetching details', err);
-          return of(null); // If error, return nothing
+          return of(null);
         })
       );
     })
@@ -45,5 +46,9 @@ export class UserTableComponent {
 
   closeModal() {
     this.showModal = false;
+  }
+
+  navigateToDetail(id: number) {
+    this.router.navigate(['/detail', id]);
   }
 }

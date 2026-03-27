@@ -6,15 +6,18 @@
             <th>Username</th>
             <th>Email</th>
             <th>Phone</th>
+            <th colspan="2">Links</th>
         </tr>
     </thead>
     <tbody id="user-table-body">
         @for (user of users; track user.id) {
-        <tr (click)="openUserDetail(user.id)" style="cursor: pointer;">
+        <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
+            <td><button (click)="openUserDetail(user.id)" style="cursor: pointer;">Modal</button></td>
+            <td><button (click)="navigateToDetail(user.id)" style="cursor: pointer;">Página</button></td>
         </tr>
         } @empty {
         <tr>
@@ -35,7 +38,7 @@
 
         @if (selectedUser$ | async; as selectedUser) {
         <app-user-card [user]="selectedUser"></app-user-card>
-        <button (click)="closeModal()">Close</button>
+        <button (click)="closeModal()">Cerrar</button>
         } @else {
         <p>Loading details...</p>
         }

@@ -12,6 +12,6 @@ export class UserCardComponent {
   private userService = inject(UserService)
 
   @Input()
-  user!: User
+  user: User | null = null;
 
 }

@@ -1,3 +1,4 @@
+@if (user$ | async; as user) {
 <div class="user-card-container">
     <div class="card-header">
         <div class="avatar">{{ (user?.name || '')[0] }}</div>
@@ -46,3 +47,5 @@
         }
     </div>
 </div>
+}
+<button (click)="navigateBack()">Volver</button>
