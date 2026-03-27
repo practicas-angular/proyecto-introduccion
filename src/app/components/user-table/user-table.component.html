@@ -6,41 +6,56 @@
             <th>Username</th>
             <th>Email</th>
             <th>Phone</th>
-            <th colspan="2">Links</th>
+            <th colspan="2">Acciones</th>
         </tr>
     </thead>
-    <tbody id="user-table-body">
+    <tbody>
         @for (user of users; track user.id) {
         <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
-            <td><button (click)="openUserDetail(user.id)" style="cursor: pointer;">Modal</button></td>
-            <td><button (click)="navigateToDetail(user.id)" style="cursor: pointer;">Página</button></td>
+            <td>
+                <button mat-stroked-button color="primary" (click)="openUserDetail(user.id)">
+                    <mat-icon>visibility</mat-icon> Modal
+                </button>
+            </td>
+            <td>
+                <button mat-flat-button color="accent" (click)="navigateToDetail(user.id)">
+                    <mat-icon>open_in_new</mat-icon> Página
+                </button>
+            </td>
         </tr>
         } @empty {
         <tr>
-            <td colspan="4">No se han encontrado usuarios.</td>
+            <td colspan="6">No se han encontrado usuarios.</td>
         </tr>
         }
     </tbody>
 </table>
 } @else {
 <div class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
     <p>Cargando usuarios...</p>
 </div>
 }
 
 @if (showModal) {
 <div class="modal-overlay" (click)="closeModal()">
+
     <div class="modal-content" (click)="$event.stopPropagation()">
 
         @if (selectedUser$ | async; as selectedUser) {
         <app-user-card [user]="selectedUser"></app-user-card>
-        <button (click)="closeModal()">Cerrar</button>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+            <button mat-raised-button color="warn" (click)="closeModal()">Cerrar</button>
+        </div>
         } @else {
-        <p>Loading details...</p>
+        <div style="display: flex; justify-content: center; padding: 20px;">
+            <mat-spinner diameter="40"></mat-spinner>
+        </div>
         }
 
     </div>
