@@ -1,6 +1,7 @@
 import { CardComponent } from "../components/card/card.component";
 import { ContactFormComponent } from "../components/contact-form/contact-form.component";
 import { FooterComponent } from "../components/footer/footer.component";
+import { LanguageSelectorComponent } from "../components/language-selector/language-selector.component";
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RoundButtonComponent } from "../components/round-button/round-button.component";
 import { UserCardComponent } from "../components/user-card/user-card.component";
@@ -17,5 +18,6 @@ export const SHARED_COMPONENTS = [
   ContactFormComponent,
   UserTableComponent,
   UserCardComponent,
-  UserFiltersComponent
+  UserFiltersComponent,
+  LanguageSelectorComponent
 ];
