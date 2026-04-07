@@ -1,0 +1,47 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap; // Permite que se ajusten en móviles
+  align-items: center;
+  gap: 1.5rem; // Espacio entre elementos
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  // Estilo para los contenedores de Angular Material
+  mat-form-field {
+    flex: 1; // Hace que crezcan proporcionalmente
+    min-width: 200px; // Evita que se colapsen demasiado
+    
+    // Quita el margen inferior por defecto de Material que descuadra la línea
+    margin-bottom: -1.25em; 
+  }
+
+  // Estilo específico para el botón de Reset
+  button {
+    height: 56px; // Alinea la altura con los form-fields de Material (estilo fill/outline)
+    margin-top: 4px; // Ajuste fino para alineación visual
+    padding: 0 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Opcional: Ajuste para pantallas muy pequeñas
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    
+    mat-form-field {
+      width: 100%;
+    }
+    
+    button {
+      width: 100%;
+      height: 48px;
+    }
+  }
+}

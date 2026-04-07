@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-details-page',
@@ -19,7 +20,7 @@ export class UserDetailsPageComponent {
   id!: string;
 
   private userService = inject(UserService);
-  user$!: Observable<any>;
+  user$!: Observable<User>;
 
   ngOnInit() {
     this.user$ = this.userService.getUserById(Number(this.id));

@@ -1,4 +1,4 @@
-@if (users$ | async; as users) {
+@if (usersToShow() !== undefined) {
 <table class="user-table">
     <thead>
         <tr>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @for (user of users; track user.id) {
+        @for (user of usersToShow(); track user.id) {
         <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>

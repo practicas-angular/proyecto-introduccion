@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { BehaviorSubject, catchError, of, switchMap } from 'rxjs';
@@ -16,10 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   selector: 'app-user-table',
   standalone: true, // Explicitly marking as standalone is good practice
   imports: [
-    AsyncPipe, 
-    SHARED_COMPONENTS, 
-    MatButtonModule, 
-    MatIconModule, 
+    AsyncPipe,
+    SHARED_COMPONENTS,
+    MatButtonModule,
+    MatIconModule,
     MatProgressSpinnerModule
   ],
   templateUrl: './user-table.component.html',
@@ -29,27 +30,13 @@ export class UserTableComponent {
   private userService = inject(UserService);
   private router = inject(Router);
 
-  // Main list stream
-  users$ = this.userService.getUsers().pipe(
-    catchError(e => {
-      console.error('Error fetching users', e);
-      return of([]);
-    })
-  );
+  // filteredUsers ahora viene del servicio
+  usersToShow = this.userService.filteredUsers;
 
-  // Selection stream for the Modal
+  // Mantenemos la lógica de los detalles (RxJS) aquí porque es específica de la tabla
   private selectedUserSource = new BehaviorSubject<number | null>(null);
-  
   selectedUser$ = this.selectedUserSource.pipe(
-    switchMap(id => {
-      if (!id) return of(null);
-      return this.userService.getUserById(id).pipe(
-        catchError(err => {
-          console.error('Error fetching details', err);
-          return of(null);
-        })
-      );
-    })
+    switchMap(id => id ? this.userService.getUserById(id) : of(null))
   );
 
   showModal = false;

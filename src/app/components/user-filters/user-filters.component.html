@@ -1,0 +1,19 @@
+<div class="filters">
+  <mat-form-field>
+    <mat-label>Buscar Username</mat-label>
+    <input matInput [value]="userService.filterUsername()"
+      (input)="userService.filterUsername.set($any($event.target).value)">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ciudad</mat-label>
+    <mat-select [value]="userService.filterCity()" (selectionChange)="userService.filterCity.set($event.value)">
+      <mat-option value="">Todas las ciudades</mat-option>
+      @for (city of userService.cities(); track city) {
+      <mat-option [value]="city">{{ city }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button color="warn" (click)="userService.resetFilters()">Reset</button>
+</div>
