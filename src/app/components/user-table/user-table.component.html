@@ -2,11 +2,11 @@
 <table class="user-table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th colspan="2">Acciones</th>
+            <th>{{ 'ABOUT.ID' | translate }}</th>
+            <th>{{ 'ABOUT.USERNAME' | translate }}</th>
+            <th>{{ 'ABOUT.EMAIL' | translate }}</th>
+            <th>{{ 'ABOUT.PHONE' | translate }}</th>
+            <th colspan="2">{{ 'ABOUT.ACTIONS' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -18,18 +18,18 @@
             <td>{{ user.phone }}</td>
             <td>
                 <button mat-stroked-button color="primary" (click)="openUserDetail(user.id)">
-                    <mat-icon>visibility</mat-icon> Modal
+                    <mat-icon>visibility</mat-icon> {{ 'ABOUT.MODAL' | translate }}
                 </button>
             </td>
             <td>
                 <button mat-flat-button color="accent" (click)="navigateToDetail(user.id)">
-                    <mat-icon>open_in_new</mat-icon> Página
+                    <mat-icon>open_in_new</mat-icon> {{ 'ABOUT.PAGE' | translate }}
                 </button>
             </td>
         </tr>
         } @empty {
         <tr>
-            <td colspan="6">No se han encontrado usuarios.</td>
+            <td colspan="6">{{ 'MESSAGES.NO_USERS' | translate }}</td>
         </tr>
         }
     </tbody>
@@ -37,27 +37,27 @@
 } @else {
 <div class="loading-spinner">
     <mat-spinner diameter="40"></mat-spinner>
-    <p>Cargando usuarios...</p>
+    <p>{{ 'MESSAGES.LOADING' | translate }}</p>
 </div>
 }
 
 @if (showModal) {
 <div class="modal-overlay" (click)="closeModal()">
-
     <div class="modal-content" (click)="$event.stopPropagation()">
 
         @if (selectedUser$ | async; as selectedUser) {
         <app-user-card [user]="selectedUser"></app-user-card>
 
         <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-            <button mat-raised-button color="warn" (click)="closeModal()">Cerrar</button>
+            <button mat-raised-button color="warn" (click)="closeModal()">
+                {{ 'BUTTONS.CLOSE' | translate }}
+            </button>
         </div>
         } @else {
         <div style="display: flex; justify-content: center; padding: 20px;">
             <mat-spinner diameter="40"></mat-spinner>
         </div>
         }
-
     </div>
 </div>
 }

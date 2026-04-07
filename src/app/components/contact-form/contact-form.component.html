@@ -1,28 +1,34 @@
 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
 
     <div class="field">
-        <label for="name">Nombre</label>
-        <input id="name" formControlName="name" placeholder="Your name">
+        <label for="name">{{ 'FORM.NAME' | translate }}</label>
+        <input id="name" formControlName="name" [placeholder]="'FORM.NAME_PLACEHOLDER' | translate">
+
         @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-        <small class="error">Nombre obligatorio (mínimo 2 carácteres)</small>
+        <small class="error">Nombre obligatorio (min 2)</small>
         }
     </div>
 
     <div class="field">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" placeholder="email@example.com">
+        <label for="email">{{ 'FORM.EMAIL' | translate }}</label>
+        <input id="email" type="email" formControlName="email" [placeholder]="'FORM.EMAIL_PLACEHOLDER' | translate">
+
         @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-        <small class="error">Por favor, escriba un email correcto.</small>
+        <small class="error">Email incorrecto</small>
         }
     </div>
 
     <div class="field">
-        <label for="message">Mensaje</label>
-        <textarea id="message" formControlName="message" rows="5" placeholder="¿Como podemos ayudarle?"></textarea>
+        <label for="message">{{ 'FORM.MESSAGE' | translate }}</label>
+        <textarea id="message" formControlName="message" rows="5"
+            [placeholder]="'FORM.MENSAJE_PLACEHOLDER' | translate"></textarea>
+
         @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
-        <small class="error">El mensaje tiene que tener al menos 10 caracteres.</small>
+        <small class="error">Mensaje demasiado corto</small>
         }
     </div>
 
-    <button type="submit" [disabled]="contactForm.invalid">Enviar</button>
+    <button type="submit" [disabled]="contactForm.invalid">
+        {{ 'FORM.SEND' | translate }}
+    </button>
 </form>

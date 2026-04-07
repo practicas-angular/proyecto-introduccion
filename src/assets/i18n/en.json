@@ -1,0 +1,33 @@
+{
+    "NAVBAR": {
+        "LANGUAGE": "Language",
+        "HOME": "Home",
+        "CONTACT": "Contact",
+        "ABOUT": "About"
+    },
+    "FORM": {
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "MESSAGE": "Message",
+        "NAME_PLACEHOLDER": "Your name",
+        "EMAIL_PLACEHOLDER": "email@example.com",
+        "MENSAJE_PLACEHOLDER": "How can we help you?",
+        "SEND": "Send"
+    },
+    "ABOUT": {
+        "ID": "ID",
+        "USERNAME": "Username",
+        "EMAIL": "Email",
+        "PHONE": "Phone",
+        "ACTIONS": "Actions",
+        "MODAL": "Modal",
+        "PAGE": "Page"
+    },
+    "MESSAGES": {
+        "NO_USERS": "No users found.",
+        "LOADING": "Loading users..."
+    },
+    "BUTTONS": {
+        "CLOSE": "Close"
+    }
+}

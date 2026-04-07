@@ -8,6 +8,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
+// Función auxiliar para obtener el idioma de forma segura
+const getSavedLang = (): string => {
+  // Comprobamos si estamos en el navegador (donde existe 'window')
+  if (typeof window !== 'undefined' && window.localStorage) {
+    return localStorage.getItem('lang') ?? 'es';
+  }
+  return 'es'; // Idioma por defecto si estamos en el servidor
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,13 +26,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideAnimationsAsync(),
     provideTranslateService({
-      // 1. RASTREO: Usa localStorage directamente aquí para decidir el idioma al arrancar
-      defaultLanguage: localStorage.getItem('lang') ?? 'es',
-      fallbackLang: localStorage.getItem('lang') ?? 'es',
+      defaultLanguage: getSavedLang(),
 
       // 2. EL CARGADOR: Aquí se define dónde están los JSON
       loader: provideTranslateHttpLoader({
-        prefix: "./assets/i18n/", // Ruta a la carpeta
+        prefix: "/assets/i18n/", // Ruta a la carpeta
         suffix: ".json"           // Extensión del archivo
       }),
     })

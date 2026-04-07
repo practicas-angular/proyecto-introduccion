@@ -1,6 +1,13 @@
-<nav>
-    <a href="/home">home</a>
-    <a href="/contact">contact</a>
-    <a href="/about">about</a>
-</nav>
-<app-language-selector></app-language-selector>
+<header class="navbar-container">
+    <div class="side-spacer"></div>
+
+    <nav>
+        <a routerLink="/home">{{ 'NAVBAR.HOME' | translate }}</a>
+        <a routerLink="/contact">{{ 'NAVBAR.CONTACT' | translate }}</a>
+        <a routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</a>
+    </nav>
+
+    <div class="selector-wrapper">
+        <app-language-selector></app-language-selector>
+    </div>
+</header>

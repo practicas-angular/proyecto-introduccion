@@ -1,39 +1,47 @@
-import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common'; // Importante para SSR
 import { TranslateService } from '@ngx-translate/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { share } from 'rxjs';
 import { SHARED_IMPORTS } from '../../shared/shared-imports';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-language-selector',
   standalone: true,
-  imports: [CommonModule, MatSelectModule, MatFormFieldModule, SHARED_IMPORTS],
+  imports: [SHARED_IMPORTS],
   templateUrl: `./language-selector.component.html`,
   styleUrl: `./language-selector.component.scss`
 })
 export class LanguageSelectorComponent {
   private translate = inject(TranslateService);
+  private platformId = inject(PLATFORM_ID); // Inyectamos el ID de plataforma
 
-  // Lista de idiomas soportados
+  // Seguimos necesitando este array para que el Select sepa qué mostrar
   languages = [
     { code: 'es', name: 'Español', flag: '🇪🇸' },
     { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'ch', name: '中文', flag: '🇨🇳' }
+    { code: 'zh', name: '中文', flag: '🇨🇳' }
   ];
 
-  // Signal que rastrea el idioma actual
-  currentLang = signal(this.translate.currentLang || localStorage.getItem('lang') || 'es');
+  // Inicializamos el signal con un valor por defecto seguro
+  currentLang = signal('es');
+
+  constructor() {
+    // Solo si estamos en el navegador, leemos el localStorage
+    if (isPlatformBrowser(this.platformId)) {
+      const saved = localStorage.getItem('lang') || 'es';
+      this.currentLang.set(saved);
+      this.translate.use(saved);
+    }
+  }
 
   changeLanguage(lang: string) {
-    // 1. Cambiamos el idioma en el servicio (Actualiza el HTML automáticamente)
     this.translate.use(lang);
-    
-    // 2. Guardamos en localStorage para persistencia al refrescar
-    localStorage.setItem('lang', lang);
-    
-    // 3. Actualizamos nuestro Signal
     this.currentLang.set(lang);
+
+    // Solo si estamos en el navegador, guardamos en localStorage
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('lang', lang);
+    }
   }
 }

@@ -1,22 +1,48 @@
-nav {
+.navbar-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
+    /* Esto distribuye el espacio: el centro se queda en el centro 
+     siempre que los laterales midan lo mismo */
+    justify-content: space-between;
+
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--plexus-shadow);
-    height: 50px;
+    height: 60px;
+    /* Un poco más de altura para el select de Material */
     background-color: var(--plexus-gray-light);
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
+/* El menú de enlaces */
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+/* Los laterales para forzar el centrado real */
+.side-spacer,
+.selector-wrapper {
+    width: 200px;
+    /* Ajusta este ancho según lo que mida tu selector */
+    display: flex;
+}
+
+.selector-wrapper {
+    justify-content: flex-end;
+    /* Empuja el selector a la derecha del todo */
+}
+
+/* Tus estilos de enlaces se mantienen igual */
 nav a {
     text-decoration: none;
     color: var(--plexus-blue);
     font-size: large;
+    font-weight: 500;
 }
 
 nav a:hover {

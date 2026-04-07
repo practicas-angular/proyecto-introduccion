@@ -8,20 +8,22 @@ import { BehaviorSubject, catchError, of, switchMap } from 'rxjs';
 import { UserService } from '../../services/user.service';
 
 // UI Components & Modules
-import { SHARED_COMPONENTS } from '../../shared/shared-components';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SHARED_IMPORTS } from '../../shared/shared-imports';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
   selector: 'app-user-table',
   standalone: true, // Explicitly marking as standalone is good practice
   imports: [
     AsyncPipe,
-    SHARED_COMPONENTS,
+    SHARED_IMPORTS,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    UserCardComponent
   ],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.scss'

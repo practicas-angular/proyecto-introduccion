@@ -1,0 +1,33 @@
+{
+    "NAVBAR": {
+        "LANGUAGE": "语言",
+        "HOME": "首页",
+        "CONTACT": "联系我们",
+        "ABOUT": "关于我们"
+    },
+    "FORM": {
+        "NAME": "姓名",
+        "EMAIL": "电子邮件",
+        "MESSAGE": "留言",
+        "NAME_PLACEHOLDER": "您的姓名",
+        "EMAIL_PLACEHOLDER": "email@example.com",
+        "MENSAJE_PLACEHOLDER": "我们能为您提供什么帮助？",
+        "SEND": "发送"
+    },
+    "ABOUT": {
+        "ID": "ID",
+        "USERNAME": "用户名",
+        "EMAIL": "电子邮件",
+        "PHONE": "电话",
+        "ACTIONS": "操作",
+        "MODAL": "模态框",
+        "PAGE": "页面"
+    },
+    "MESSAGES": {
+        "NO_USERS": "未找到用户。",
+        "LOADING": "正在加载用户..."
+    },
+    "BUTTONS": {
+        "CLOSE": "关闭"
+    }
+}

@@ -1,8 +1,26 @@
 {
   "NAVBAR": {
-    "SELECT_LANG": "Idioma",
+    "LANGUAGE": "Idioma",
     "HOME": "Inicio",
     "CONTACT": "Contacto",
     "ABOUT": "Acerca de"
+  },
+  "FORM": {
+    "NAME": "Nombre",
+    "EMAIL": "Email",
+    "MESSAGE": "Mensaje",
+    "NAME_PLACEHOLDER": "Tu nombre",
+    "EMAIL_PLACEHOLDER": "email@ejemplo.com",
+    "MENSAJE_PLACEHOLDER": "¿Cómo podemos ayudarle?",
+    "SEND": "Enviar"
+  },
+  "ABOUT": {
+    "ID": "ID",
+    "USERNAME": "Usuario",
+    "EMAIL": "Email",
+    "PHONE": "Phone",
+    "ACTIONS": "Acciones",
+    "MODAL": "Modal",
+    "PAGE": "Página"
   }
 }
