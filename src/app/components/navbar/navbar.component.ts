@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared-imports';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
-import { LocalStorageService } from '../../services/local-storage-service.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth-service.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',

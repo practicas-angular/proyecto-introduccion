@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { SHARED_IMPORTS } from '../../shared/shared-imports';
-import { LocalStorageService } from '../../services/local-storage-service.service'; // Adjust path as needed
+import { LocalStorageService } from '../../services/local-storage.service'; // Adjust path as needed
 
 @Component({
   selector: 'app-language-selector',
