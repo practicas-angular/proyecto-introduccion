@@ -48,3 +48,20 @@ nav a {
 nav a:hover {
     text-decoration: underline;
 }
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--plexus-blue);
+  color: var(--plexus-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--plexus-blue-hover);
+}

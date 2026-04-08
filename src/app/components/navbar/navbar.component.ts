@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared-imports';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
+import { LocalStorageService } from '../../services/local-storage-service.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,5 +12,10 @@ import { LanguageSelectorComponent } from '../language-selector/language-selecto
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  public authService = inject(AuthService);
+  private router = inject(Router);
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

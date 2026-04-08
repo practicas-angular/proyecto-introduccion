@@ -8,6 +8,11 @@
     </nav>
 
     <div class="selector-wrapper">
+        @if (!authService.isAdmin()) {
+            <button (click)="goToLogin()">Login</button>
+        }@else {
+            <button (click)="authService.logout()">Logout</button>
+        }
         <app-language-selector></app-language-selector>
     </div>
 </header>

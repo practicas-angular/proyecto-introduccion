@@ -4,6 +4,9 @@ import { HomePage } from './pages/home/home.component';
 import { AboutPage } from './pages/about/about.component';
 import { ContactPage } from './pages/contact/contact.component';
 import { UserDetailsPageComponent } from './components/user-details-page/user-details-page.component';
+import { adminGuard } from './guards/admin.guard';
+import { LoginComponent } from './pages/login/login.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
     { path: '', component: HomePage },
@@ -12,5 +15,10 @@ export const routes: Routes = [
     { path: 'contact', component: ContactPage },
     { path: 'about', component: AboutPage },
     { path: 'detail/:id', component: UserDetailsPageComponent },
-
+    { path: 'login', component: LoginComponent },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [adminGuard]
+    },
 ];

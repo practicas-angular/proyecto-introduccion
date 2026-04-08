@@ -1,0 +1,24 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+
+    <div class="field">
+        <label for="email">{{ 'FORM.EMAIL' | translate }}</label>
+        <input id="email" type="email" formControlName="email" [placeholder]="'FORM.EMAIL_PLACEHOLDER' | translate">
+
+        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+        <small class="error">Email incorrecto</small>
+        }
+    </div>
+
+    <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Introduzca su contraseña">
+
+        @if (contactForm.get('password')?.invalid && contactForm.get('password')?.touched) {
+        <small class="error">Contraseña demasiado corta</small>
+        }
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">
+        {{ 'FORM.SEND' | translate }}
+    </button>
+</form>
