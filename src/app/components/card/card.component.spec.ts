@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -8,7 +9,12 @@ describe('CardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardComponent]
+      imports: [CardComponent], 
+      // Aquí es donde solucionamos el error de "NullInjector"
+      providers: [
+        provideHttpClient(),        // Provee el cliente HTTP
+        provideHttpClient()  // Provee la herramienta de tests de HTTP
+      ]
     })
     .compileComponents();
 
