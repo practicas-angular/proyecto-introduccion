@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+<main>
+  <div class="container">
+    <h1 class="exercise-title">Welcome to GSAP + Angular</h1>
+
+    <hr />
+  </div>
+
+  <section class="exercise-2">
+    <h2 class="seq-title">Sequence Title</h2>
+    <p class="seq-subtitle">This appears right after the title.</p>
+    <button class="seq-button">Click Me!</button>
+  </section>
+
+  <section class="exercise-3">
+    <h3>My Skill List</h3>
+    <ul class="skill-list">
+      <li>Angular</li>
+      <li>TypeScript</li>
+      <li>GSAP Animations</li>
+      <li>CSS Magic</li>
+      <li>Web Design</li>
+    </ul>
+  </section>
+
+  <section class="exercise-4">
+    <div class="ball"></div>
+  </section>
+
+  <section class="exercise-5">
+    <div class="card">
+      <div class="card-header">Feature Card</div>
+      <div class="card-body">This content is organized by labels!</div>
+      <div class="card-footer">Action</div>
+    </div>
+  </section>
+
+  <section class="exercise-6">
+    <div class="callback-box">Status: {{ animationStatus }}</div>
+  </section>
+
+  <section class="exercise-7">
+    <div class="control-box">Control Me</div>
+    <div class="button-group">
+      <button (click)="play()">Play</button>
+      <button (click)="pause()">Pause</button>
+      <button (click)="reverse()">Reverse</button>
+    </div>
+  </section>
+
+  <section class="exercise-8">
+    <div class="interactive-box" (click)="animateBox()">Click to Transform</div>
+  </section>
+
+  <div
+    style="
+      height: 80vh;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    Scroll down to see Exercise 9...
+  </div>
+  <section class="exercise-9">
+    <div class="scroll-box">I appear on Scroll!</div>
+  </section>
+
+  <section
+    #mouseContainer
+    class="exercise-10"
+    (mousemove)="moveFollower($event)"
+  >
+    <div #follower class="follower"></div>
+    <p>Move your mouse around this area!</p>
+  </section>
+
+  <section class="exercise-11">
+    <div class="responsive-box">Desktop: Move | Mobile: Pulse</div>
+  </section>
+</main>
+<app-footer></app-footer>
