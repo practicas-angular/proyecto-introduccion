@@ -5,6 +5,7 @@
         <a routerLink="/home">{{ 'NAVBAR.HOME' | translate }}</a>
         <a routerLink="/contact">{{ 'NAVBAR.CONTACT' | translate }}</a>
         <a routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</a>
+        <a routerLink="/pipes">Pipes</a>
         @if (authService.isAdmin()) {
             <a routerLink="/admin">Admin</a>
         }

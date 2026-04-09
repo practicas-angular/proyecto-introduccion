@@ -14,27 +14,8 @@ import {
 
 @Component({
   selector: 'app-admin',
-  imports: [
-    NavbarComponent,
-    FooterComponent,
-    UpperCasePipe,
-    LowerCasePipe,
-    TitleCasePipe,
-    DatePipe,
-    CurrencyPipe,
-    PercentPipe,
-    SlicePipe,
-    JsonPipe,
-  ],
+  imports: [NavbarComponent, FooterComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss',
 })
-export class AdminComponent {
-  today = new Date();
-  userObject = {
-    id: 1,
-    nombre: 'Juan',
-    email: 'juan@mail.com',
-    roles: ['admin', 'editor'],
-  };
-}
+export class AdminComponent {}

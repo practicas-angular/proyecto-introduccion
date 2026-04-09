@@ -1,0 +1,111 @@
+<app-navbar></app-navbar>
+<main>
+  <h1>Pipes simples</h1>
+  <section>
+    <h3>Transformación de Texto</h3>
+    <p><strong>Original:</strong> juan pérez garcía</p>
+
+    <ul>
+      <li><strong>Uppercase:</strong> {{ "juan pérez garcía" | uppercase }}</li>
+      <li><strong>Lowercase:</strong> {{ "JUAN PÉREZ GARCÍA" | lowercase }}</li>
+      <li><strong>Titlecase:</strong> {{ "juan pérez garcía" | titlecase }}</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Fechas y Horas</h3>
+    <p><strong>Fecha base (today):</strong> {{ today }}</p>
+
+    <ul>
+      <li><strong>Corto:</strong> {{ today | date: "shortDate" }}</li>
+      <li><strong>Completo:</strong> {{ today | date: "full" }}</li>
+      <li>
+        <strong>Personalizado (Español):</strong>
+        {{ today | date: "dd/MM/yyyy HH:mm" }}
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3>Precios y Moneda</h3>
+    <ul>
+      <li><strong>Euros (Símbolo):</strong> {{ 1250.5 | currency: "EUR" }}</li>
+      <li>
+        <strong>Euros (Texto):</strong> {{ 1250.5 | currency: "EUR" : "code" }}
+      </li>
+      <li>
+        <strong>Formato específico:</strong>
+        {{ 49.99 | currency: "EUR" : "symbol" : "1.2-2" }}
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3>Progreso y Porcentajes</h3>
+    <ul>
+      <li><strong>Básico (0.85):</strong> {{ 0.85 | percent }}</li>
+      <li>
+        <strong>Con decimales (0.1234):</strong> {{ 0.1234 | percent: "1.2-2" }}
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3>Recorte de Texto (Slice)</h3>
+    <p>
+      <strong>Texto completo:</strong> "Voy a cortar de aquí a aquí y nada más"
+    </p>
+
+    <p>
+      <strong>Solo la parte cortada:</strong>
+      {{ "Voy a cortar de aquí a aquí y nada más" | slice: 16 : 27 }}
+    </p>
+
+    <p>
+      <strong>Desde "aquí" al final:</strong>
+      {{ "Voy a cortar de aquí a aquí y nada más" | slice: 16 }}
+    </p>
+  </section>
+  <section>
+    <h3>Visualización de Objetos (JSON)</h3>
+    <p><strong>Objeto renderizado sin pipe:</strong> {{ userObject }}</p>
+
+    <p><strong>Objeto legible (JSON Pipe):</strong></p>
+    <pre>{{ userObject | json }}</pre>
+  </section>
+  <h1>Pipes personalizadas</h1>
+  <section>
+    <h3>Pipe saludo</h3>
+    <p><strong>String original:</strong> Gabino</p>
+
+    <p><strong>Saludo generado:</strong> {{ "Gabino" | saludo }}</p>
+  </section>
+  <section>
+    <h3>Pipe Doble</h3>
+    <p><strong>Número original:</strong> 15</p>
+    <p><strong>Resultado del pipe:</strong> {{ 15 | doble }}</p>
+  </section>
+  <section>
+    <h3>Pipe Resaltar</h3>
+    <p><strong>Texto original:</strong> Este es un texto importante</p>
+
+    <p>
+      <strong>Resultado con [innerHTML]: </strong>
+      <span [innerHTML]="'Este es un texto importante' | resaltar"></span>
+    </p>
+  </section>
+  <section>
+    <h3>Pipe Edad</h3>
+    <p><strong>Fecha de nacimiento:</strong> 15 de Mayo de 1995</p>
+
+    <p><strong>Edad calculada:</strong> {{ "1995-05-15" | edad }} años</p>
+  </section>
+  <section>
+    <h3>Encadenamiento de Pipes</h3>
+    <p>
+      <strong>Dato:</strong> Edad resaltada de alguien nacido en el año 2000
+    </p>
+
+    <p>
+      <strong>Tu edad es: </strong>
+      <span [innerHTML]="('2000-01-01' | edad).toString() | resaltar"></span>
+    </p>
+  </section>
+</main>
+<app-footer></app-footer>

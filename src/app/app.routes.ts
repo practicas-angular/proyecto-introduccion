@@ -7,18 +7,20 @@ import { UserDetailsPageComponent } from './components/user-details-page/user-de
 import { adminGuard } from './guards/admin.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { PipesComponent } from './pages/pipes/pipes.component';
 
 export const routes: Routes = [
-    { path: '', component: HomePage },
-    { path: 'testing-directives', component: TestingPageDirectivesComponent },
-    { path: 'home', component: HomePage },
-    { path: 'contact', component: ContactPage },
-    { path: 'about', component: AboutPage },
-    { path: 'detail/:id', component: UserDetailsPageComponent },
-    { path: 'login', component: LoginComponent },
-    {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [adminGuard]
-    },
+  { path: '', component: HomePage },
+  { path: 'testing-directives', component: TestingPageDirectivesComponent },
+  { path: 'home', component: HomePage },
+  { path: 'contact', component: ContactPage },
+  { path: 'about', component: AboutPage },
+  { path: 'detail/:id', component: UserDetailsPageComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [adminGuard],
+  },
+  { path: 'pipes', component: PipesComponent },
 ];
