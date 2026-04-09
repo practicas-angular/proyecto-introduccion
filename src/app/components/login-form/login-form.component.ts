@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +15,7 @@ import { Subject, switchMap } from 'rxjs';
 export class LoginFormComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
   contactForm = this.fb.group({
@@ -22,22 +24,31 @@ export class LoginFormComponent {
   });
 
   // 1. Creamos un "disparador"
-private loginTrigger$ = new Subject<string>();
+  private loginTrigger$ = new Subject<string>();
 
-constructor() {
-  // 2. Configuramos el flujo una sola vez
-  this.loginTrigger$.pipe(
-    // switchMap cancela la petición anterior si llega una nueva
-    switchMap(email => this.authService.login(email)),
-    takeUntilDestroyed()
-  ).subscribe(isAdmin => {
-    if (isAdmin) this.contactForm.reset();
-  });
-}
-
-onSubmit() {
-  if (this.contactForm.valid) {
-    this.loginTrigger$.next(this.contactForm.value.email ? this.contactForm.value.email : '');
+  constructor() {
+    // 2. Configuramos el flujo una sola vez
+    this.loginTrigger$
+      .pipe(
+        // switchMap cancela la petición anterior si llega una nueva
+        switchMap((email) => this.authService.login(email)),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((isAdmin) => {
+        if (isAdmin) {
+        this.contactForm.reset();
+        this.router.navigate(['/home']);
+      } else {
+        alert('Usuario no encontrado en la base de datos');
+      }
+      });
   }
-}
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      this.loginTrigger$.next(
+        this.contactForm.value.email ? this.contactForm.value.email : '',
+      );
+    }
+  }
 }

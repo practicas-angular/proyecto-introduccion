@@ -9,15 +9,11 @@ export class UserJsonService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/users';
 
-  getUserRoleByEmail(email: string): Observable<string | null> {
+  getUserByEmail(email: string): Observable<boolean> {
     return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
-      map((users) => {
-        if (users.length > 0) {
-          return users[0].role; // Devuelve 'admin', 'user', etc.
-        }
-        return null; // No encontrado
-      }),
-      catchError(() => of(null)), // En caso de error de red, devolvemos null
+      // Si el array tiene longitud > 0, el usuario existe
+      map((users) => users.length > 0),
+      catchError(() => of(false)),
     );
   }
 }

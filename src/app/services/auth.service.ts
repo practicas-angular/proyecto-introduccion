@@ -13,10 +13,9 @@ export class AuthService {
   isAdmin = signal<boolean>(this.storage.get('isAdmin') === 'true');
 
   login(email: string): Observable<boolean> {
-    return this.userJsonService.getUserRoleByEmail(email).pipe(
-      map((role) => role === 'admin'), // Transformamos el string/null en un booleano
-      tap((adminCheck) => {
-        if (adminCheck) {
+    return this.userJsonService.getUserByEmail(email).pipe(
+      tap((exists) => {
+        if (exists) {
           localStorage.setItem('isAdmin', 'true');
           this.isAdmin.set(true);
         }
