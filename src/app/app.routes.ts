@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { PipesComponent } from './pages/pipes/pipes.component';
 import { GsapPageComponent } from './pages/gsap/gsap.component';
+import { SseComponent } from './pages/sse/sse.component';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -25,4 +26,5 @@ export const routes: Routes = [
   },
   { path: 'pipes', component: PipesComponent },
   { path: 'gsap', component: GsapPageComponent },
+  { path: 'sse', component: SseComponent },
 ];

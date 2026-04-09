@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>SSE Learning Dashboard</h1>
+
+  <div class="status-card">
+    <h3>Estado de la Conexión:</h3>
+    <p [class.connected]="connectionStatus === 'Connected'">
+      {{ connectionStatus }}
+    </p>
+  </div>
+</div>

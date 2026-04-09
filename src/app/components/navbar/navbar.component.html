@@ -1,23 +1,24 @@
 <header class="navbar-container">
-    <div class="side-spacer"></div>
+  <div class="side-spacer"></div>
 
-    <nav>
-        <a routerLink="/home">{{ 'NAVBAR.HOME' | translate }}</a>
-        <a routerLink="/contact">{{ 'NAVBAR.CONTACT' | translate }}</a>
-        <a routerLink="/about">{{ 'NAVBAR.ABOUT' | translate }}</a>
-        <a routerLink="/pipes">Pipes</a>
-        <a routerLink="/gsap">Gsap</a>
-        @if (authService.isAdmin()) {
-            <a routerLink="/admin">Admin</a>
-        }
-    </nav>
+  <nav>
+    <a routerLink="/home">{{ "NAVBAR.HOME" | translate }}</a>
+    <a routerLink="/contact">{{ "NAVBAR.CONTACT" | translate }}</a>
+    <a routerLink="/about">{{ "NAVBAR.ABOUT" | translate }}</a>
+    <a routerLink="/pipes">Pipes</a>
+    <a routerLink="/gsap">GSAP</a>
+    <a routerLink="/sse">SSE</a>
+    @if (authService.isAdmin()) {
+      <a routerLink="/admin">Admin</a>
+    }
+  </nav>
 
-    <div class="selector-wrapper">
-        @if (!authService.isAdmin()) {
-            <button (click)="goToLogin()">Login</button>
-        }@else {
-            <button (click)="authService.logout()">Logout</button>
-        }
-        <app-language-selector></app-language-selector>
-    </div>
+  <div class="selector-wrapper">
+    @if (!authService.isAdmin()) {
+      <button (click)="goToLogin()">Login</button>
+    } @else {
+      <button (click)="authService.logout()">Logout</button>
+    }
+    <app-language-selector></app-language-selector>
+  </div>
 </header>
