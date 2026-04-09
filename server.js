@@ -12,13 +12,19 @@ http
 
     console.log("Client connected!");
 
-    // Send a message every 2 seconds
     const interval = setInterval(() => {
-      res.write(`data: Message at ${new Date().toLocaleTimeString()}\n\n`);
+      // 1. Create a proper object
+      const dataObject = {
+        message: `Message at ${new Date().toLocaleTimeString()}`,
+        timestamp: new Date()
+      };
+      
+      // 2. Stringify it and wrap it in the SSE 'data:' format
+      res.write(`data: ${JSON.stringify(dataObject)}\n\n`);
     }, 2000);
 
     req.on("close", () => clearInterval(interval));
   })
-  .listen(3000, () =>
-    console.log("SSE Server running at http://localhost:3000/events"),
+  .listen(3001, () =>
+    console.log("SSE Server running at http://localhost:3001/events"),
   );
