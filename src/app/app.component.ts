@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SHARED_IMPORTS } from './shared/shared-imports';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,8 @@ import { SHARED_IMPORTS } from './shared/shared-imports';
 })
 export class AppComponent {
   title = 'proyecto-introduccion';
+  private loadingService = inject(LoadingService);
+
+  // Expose the loading$ observable for the template
+  loading$ = this.loadingService.loading$;
 }

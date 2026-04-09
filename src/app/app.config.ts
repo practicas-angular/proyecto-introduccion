@@ -3,10 +3,15 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { authInterceptor } from './interceptors/auth.interceptor';
+import { registerReqInterceptor } from './interceptors/register-req.interceptor';
+import { registerErrorInterceptor } from './interceptors/register-error.interceptor';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { adminHeaderInterceptor } from './interceptors/admin-header.interceptor';
 
 // Función auxiliar para obtener el idioma de forma segura
 const getSavedLang = (): string => {
@@ -33,6 +38,16 @@ export const appConfig: ApplicationConfig = {
         prefix: "/assets/i18n/", // Ruta a la carpeta
         suffix: ".json"           // Extensión del archivo
       }),
-    })
+    }),
+    // Registramos el cliente HTTP con nuestro array de interceptores
+    provideHttpClient(
+      withInterceptors([
+        authInterceptor,
+        registerReqInterceptor,
+        registerErrorInterceptor,
+        loadingInterceptor,
+        adminHeaderInterceptor
+      ])
+    )
   ]
 };

@@ -36,19 +36,21 @@ export class LoginFormComponent {
       )
       .subscribe((isAdmin) => {
         if (isAdmin) {
-        this.contactForm.reset();
-        this.router.navigate(['/home']);
-      } else {
-        alert('Usuario no encontrado en la base de datos');
-      }
+          this.contactForm.reset();
+          this.router.navigate(['/admin']);
+        } else {
+          alert('Usuario no encontrado en la base de datos');
+        }
       });
   }
 
   onSubmit() {
     if (this.contactForm.valid) {
-      this.loginTrigger$.next(
-        this.contactForm.value.email ? this.contactForm.value.email : '',
-      );
+      let email = this.contactForm.value.email
+      ? this.contactForm.value.email
+      : '';
+      this.contactForm.reset();
+      this.loginTrigger$.next(email);
     }
   }
 }

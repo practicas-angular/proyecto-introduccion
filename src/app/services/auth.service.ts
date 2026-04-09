@@ -10,14 +10,19 @@ export class AuthService {
   private userJsonService = inject(UserJsonService);
   private router = inject(Router);
 
+  // Inicializamos el token con lo que haya en localStorage (si existe)
+  private _token = signal<string | null>(this.storage.get('userToken'));
+
   isAdmin = signal<boolean>(this.storage.get('isAdmin') === 'true');
 
   login(email: string): Observable<boolean> {
     return this.userJsonService.getUserByEmail(email).pipe(
       tap((exists) => {
         if (exists) {
-          localStorage.setItem('isAdmin', 'true');
+          this.storage.set('isAdmin', 'true');
           this.isAdmin.set(true);
+
+          this.storage.set('userToken', email);
         }
       }),
     );
@@ -26,6 +31,10 @@ export class AuthService {
   logout() {
     this.storage.remove('isAdmin');
     this.isAdmin.set(false);
+
+    this.storage.remove('userToken');
+    this._token.set(null);
+
     this.router.navigate(['/login']);
   }
 }
