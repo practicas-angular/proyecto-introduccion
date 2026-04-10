@@ -1,0 +1,46 @@
+<div class="chat-container">
+  <div class="hub-wrapper">
+    <aside class="status-sidebar">
+      <h3>System Health</h3>
+      @for (s of systemStatus(); track $index) {
+        <div class="status-pill">{{ s.text }}</div>
+      }
+    </aside>
+
+    <main class="chat-main">
+      <div class="message-window">
+        @for (m of chatMessages(); track $index) {
+          <div class="message-bubble">
+            <strong>{{ m.user }}:</strong> {{ m.text }}
+          </div>
+        }
+      </div>
+
+      <div class="input-container">
+        <input
+          #messageInput
+          type="text"
+          placeholder="Type a message..."
+          (keyup.enter)="sendMessage(messageInput)"
+        />
+
+        <button class="btn-send" (click)="sendMessage(messageInput)">
+          Send
+        </button>
+        <button class="btn-sim btn-notify" (click)="sendFakeNotification()">
+          🔔
+        </button>
+        <button class="btn-sim btn-status" (click)="sendFakeStatus()">
+          📊
+        </button>
+      </div>
+    </main>
+
+    <aside class="notification-panel">
+      <h3>Activity</h3>
+      @for (n of notifications(); track $index) {
+        <div class="toast">🔔 {{ n.text }}</div>
+      }
+    </aside>
+  </div>
+</div>
