@@ -3,17 +3,26 @@
 
   <div class="status-card">
     <h3>Estado de la Conexión:</h3>
-    <span class="status-indicator" [class.connected]="connectionStatus() === 'Connected'"
+    <span
+      class="status-indicator"
+      [class.connected]="connectionStatus() === 'Connected'"
       [class.disconnected]="connectionStatus() === 'Disconnected'"
-      [class.connecting]="connectionStatus() === 'Connecting'">
+      [class.connecting]="connectionStatus() === 'Connecting'"
+    >
     </span>
     {{ connectionStatus() }}
-    @if (connectionStatus() === 'Retrying...') {
-    <div class="error-msg">
-      ⚠️ Connection lost. Attempt #{{ retryCount() }}.
-      Retrying in 5 seconds...
-    </div>
+    @if (connectionStatus() === "Retrying...") {
+      <div class="error-msg">
+        ⚠️ Connection lost. Attempt #{{ retryCount() }}. Retrying in 5
+        seconds...
+      </div>
     }
+    <div class="progress-container">
+      <label>Task Progress: {{ progress() }}%</label>
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progress()"></div>
+      </div>
+    </div>
   </div>
 
   <div class="controls">
@@ -40,9 +49,9 @@
 
   <ul class="message-list">
     @for (msg of messages(); track $index) {
-    <li class="message-item">{{ msg }}</li>
+      <li class="message-item">{{ msg }}</li>
     } @empty {
-    <li>No messages received yet...</li>
+      <li>No messages received yet...</li>
     }
   </ul>
 </div>

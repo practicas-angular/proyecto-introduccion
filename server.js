@@ -12,15 +12,23 @@ http
 
     console.log("Client connected!");
 
+    let progressValue = 0;
+
     const interval = setInterval(() => {
-      // 1. Create a proper object
       const dataObject = {
         message: `Message at ${new Date().toLocaleTimeString()}`,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
-      
-      // 2. Stringify it and wrap it in the SSE 'data:' format
       res.write(`data: ${JSON.stringify(dataObject)}\n\n`);
+
+      progressValue = (progressValue + 10) % 110; // Loop 0 to 100
+      res.write(`event: progress\n`); // Name the event
+      res.write(`data: ${JSON.stringify({ value: progressValue })}\n\n`);
+
+      if (progressValue === 100) {
+        res.write(`event: alert\n`);
+        res.write(`data: Cycle completed successfully!\n\n`);
+      }
     }, 2000);
 
     req.on("close", () => clearInterval(interval));
